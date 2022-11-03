@@ -1,0 +1,40 @@
+{
+  "name": "@metagrid/modern-metagrid-widget",
+  "description": "A plain js widget for metagrid",
+  "private": false,
+  "version": "1.0.0",
+  "type": "module",
+  "module": "dist/metagrid-widget.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/metagrid-widget.cjs.js",
+      "import": "./dist/metagrid-widget.es.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "build:types": "tsc --emitDeclarationOnly && tsc-alias"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^24.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "tsc-alias": "^1.7.0",
+    "typescript": "*",
+    "vite": "^3.2.1",
+    "vite-plugin-eslint": "^1.8.1"
+  },
+  "dependencies": {
+    "@vitejs/plugin-legacy": "^2.3.0"
+  }
+}

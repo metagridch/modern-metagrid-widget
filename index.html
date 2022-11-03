@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>This is a metagrid example</title>
+    <style>
+        #metagrid-widget-style .metagrid-list {
+            padding: 0;
+        }
+
+        #metagrid-widget-style .metagrid-item {
+            list-style: none;
+            display: inline-block;
+            margin-right: 1em;
+        }
+
+        #metagrid-widget-style .metagrid-credit {
+            font-size: 75%;
+        }
+    </style>
+</head>
+<body>
+<h1>Example of metagrid widgets</h1>
+<p>Some examples of uses for the metagrid widget</p>
+<h3>Default (german)</h3>
+<div id="metagrid-widget"></div>
+<h3>Including link title (french)</h3>
+<div id="metagrid-widget-description"></div>
+<h3>With basic styling (english)</h3>
+<div id="metagrid-widget-style"></div>
+<script type="module" src="/src/metagrid-widget.ts"></script>
+<script type="module">
+    import {widget} from "./src/metagrid-widget.ts";
+    window.onload = function () {
+        const el = document.getElementById('metagrid-widget')
+        widget(el, 'dodis', '5');
+        const el1 = document.getElementById('metagrid-widget-description')
+        widget(el1, 'dodis', '100', 'fr', true);
+        const el2 = document.getElementById('metagrid-widget-style')
+        widget(el2, 'dodis', '1001', 'en');
+    }
+</script>
+</body>
+</html>
