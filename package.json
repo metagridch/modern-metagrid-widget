@@ -2,7 +2,20 @@
   "name": "@metagrid/modern-metagrid-widget",
   "description": "A plain js widget for metagrid",
   "private": false,
-  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "apache 2",
+  "bugs": {
+    "url": "https://github.com/metagridch/modern-metagrid-widget/issues",
+    "email": "info@metagrid.ch"
+  },
+  "repository": {
+    "url": "https://github.com/metagridch/modern-metagrid-widget",
+    "type": "git"
+  },
+  "homepage": "https://metagrid.ch",
+  "version": "1.0.1",
   "type": "module",
   "module": "dist/metagrid-widget.es.js",
   "types": "dist/index.d.ts",
