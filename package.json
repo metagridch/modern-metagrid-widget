@@ -15,14 +15,15 @@
     "type": "git"
   },
   "homepage": "https://metagrid.ch",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
-  "module": "dist/metagrid-widget.es.js",
-  "types": "dist/index.d.ts",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/metagrid-widget.cjs.js",
-      "import": "./dist/metagrid-widget.es.js"
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.es.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "sideEffects": false,

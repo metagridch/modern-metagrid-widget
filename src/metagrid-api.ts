@@ -47,7 +47,7 @@ export interface MetagridLink {
 /**
  * An array of Metagrid links
  */
-interface MetagridLinks extends Array<MetagridLink> {}
+export interface MetagridLinks extends Array<MetagridLink> {}
 
 /**
  * A single item detail from the metagrid api

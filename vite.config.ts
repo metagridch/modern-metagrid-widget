@@ -11,9 +11,9 @@ export default defineConfig({
     },
     build: {
         lib: {
-            entry: resolve(__dirname, 'src', 'metagrid-widget.ts'),
+            entry: resolve(__dirname, 'src', 'index.ts'),
             formats: ['es', 'cjs'],
-            fileName: (ext) => `metagrid-widget.${ext}.js`,
+            fileName: (ext) => `index.${ext}.js`,
         },
         target: 'es2015',
         sourcemap: true

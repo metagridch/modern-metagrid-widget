@@ -42,7 +42,7 @@ export interface MetagridLink {
 /**
  * An array of Metagrid links
  */
-interface MetagridLinks extends Array<MetagridLink> {
+export interface MetagridLinks extends Array<MetagridLink> {
 }
 /**
  * MetagridApi class to fetch data from the metagrid server
@@ -93,5 +93,4 @@ export declare class MetagridApi {
        */
     static create(projectSlug: string, entity?: string): MetagridApi;
 }
-export {};
 //# sourceMappingURL=metagrid-api.d.ts.map
