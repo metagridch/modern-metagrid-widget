@@ -15,7 +15,7 @@
     "type": "git"
   },
   "homepage": "https://metagrid.ch",
-  "version": "1.0.3",
+  "version": "1.0.2",
   "type": "module",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
