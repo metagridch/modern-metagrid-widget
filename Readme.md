@@ -19,6 +19,12 @@ This widget supports modern browsers only. So you may thin twice before using it
 
 You could work around those limitation, but it's faster to just use the jquery plugin or build it out by yourself.
 
+## install
+
+```bash
+nmp install @metagrid/modern-metagrid-widget
+```
+
 ## Features
 
 * Easy to use js-widget to interact with metagrid API and to display a list of links from metagrid.
