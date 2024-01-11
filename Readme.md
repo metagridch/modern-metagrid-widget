@@ -22,7 +22,7 @@ You could work around those limitation, but it's faster to just use the jquery p
 ## install
 
 ```bash
-nmp install @metagrid/modern-metagrid-widget
+npm install @metagrid/modern-metagrid-widget
 ```
 
 ## Features
