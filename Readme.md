@@ -33,7 +33,7 @@ npm install @metagrid/modern-metagrid-widget
 
 ## Usage
 
-Install the lib over `npm install modern-metagrid-widget` or download the latest release.
+Install the lib over `npm install @metagrid/modern-metagrid-widget` or download the latest release.
 
 ### Terminology
 
