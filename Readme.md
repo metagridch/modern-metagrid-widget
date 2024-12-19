@@ -33,7 +33,7 @@ npm install @metagrid/modern-metagrid-widget
 
 ## Usage
 
-Install the lib over `npm install modern-metagrid-widget` or download the latest release.
+Install the lib over `npm install @metagrid/modern-metagrid-widget` or download the latest release.
 
 ### Terminology
 
@@ -47,7 +47,7 @@ Install the lib over `npm install modern-metagrid-widget` or download the latest
 
 ### Basic example
 
-Include the `/dist/metagrid-widget.es.js` file as **type module** into your html. Then call `widget(el: HtmlElement, projectSlug: string, identifier: string, language?: string, includeDescription?: boolean);` This will mount the widget on the element el and shows the list of links.
+Include the `/dist/index.es.js` file as **type module** into your html. Then call `widget(el: HtmlElement, projectSlug: string, identifier: string, language?: string, includeDescription?: boolean);` This will mount the widget on the element el and shows the list of links.
 
 In this example we load the widget for the provider `dodis` and identifier `5`. These are the links for the person [Max Petitpiere ](https://dodis.ch/P5) on dodis.
 
@@ -61,7 +61,7 @@ In this example we load the widget for the provider `dodis` and identifier `5`. 
 <body>
 <div id="metagrid-widget"></div>
 <script type="module">
-    import { widget } from "./dist/metagrid-widget.es.js";
+    import { widget } from "./dist/index.es.js";
     widget(document.getElementById('metagrid-widget'), 'dodis', '5');
 </script>
 </body>
@@ -70,19 +70,19 @@ In this example we load the widget for the provider `dodis` and identifier `5`. 
 
 ### Extended example
 
-Most often the identifier of a resource is present in the url. In this example we will extract the identifier from the url and then call to the widget. In this example we change the `language` to french and set the `includeDescription` parameter to true. This will load a description for each provider from the server and display it as a title on the link. This can give the user more insights about the link 
+Most often the identifier of a resource is present in the url. In this example we will extract the identifier from the url and then call to the widget. In this example we change the `language` to french and set the `includeDescription` parameter to true. This will load a description for each provider from the server and display it as a title on the link. This can give the user more insights about the link.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>This is a metagrid example</title>
+    <title>Voici un exemple de metagrid</title>
 </head>
 <body>
 <div id="metagrid-widget"></div>
 <script type="module">
-    import {widget} from "./dist/metagrid-widget.es.js";
+    import {widget} from "./dist/index.es.js";
     const matches = window.location.href.match(/(\d+)$/);
     if(matches !== null) {
         const id = matches[1];
