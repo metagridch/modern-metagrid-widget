@@ -1,5 +1,40 @@
 import { MetagridApi, MetagridData, MetagridLanguages } from './metagrid-api.js'
 
+let idCounter = 0
+const uid = (): string => `metagrid-${++idCounter}`
+
+const newTabText: Record<string, string> = {
+  de: '(öffnet in neuem Tab)',
+  fr: '(s’ouvre dans un nouvel onglet)',
+  it: '(si apre in una nuova scheda)',
+  nl: '(opent in nieuw tabblad)',
+  en: '(opens in a new tab)'
+}
+
+/**
+ * Hidden element referenced via aria-describedby. Hidden elements are still
+ * read when referenced, so no CSS is needed.
+ */
+function hiddenText (text: string, lang?: string): HTMLSpanElement {
+  const span = document.createElement('span')
+  span.id = uid()
+  span.hidden = true
+  span.textContent = text
+  if (typeof lang !== 'undefined') span.lang = lang
+  return span
+}
+
+function newTabNote (language?: string): HTMLSpanElement {
+  const lang = typeof language !== 'undefined' && language in newTabText ? language : 'en'
+  return hiddenText(newTabText[lang], lang)
+}
+
+function makeNewTabLink (a: HTMLAnchorElement, describedBy: string): void {
+  a.target = '_blank'
+  a.rel = 'noopener'
+  a.setAttribute('aria-describedby', describedBy)
+}
+
 /**
    * Widget renders the metagrid links into a given html element
    * @param mountTo
@@ -15,6 +50,8 @@ export async function widget (mountTo: HTMLElement, projectSlug: string, identif
     // build up link list
     const ul = document.createElement('ul')
     ul.classList.add('metagrid-list')
+    ul.lang = language
+    const note = newTabNote(language)
     data.data.forEach((d) => {
       const link = d
       const li = document.createElement('li')
@@ -23,15 +60,19 @@ export async function widget (mountTo: HTMLElement, projectSlug: string, identif
       a.classList.add('metagrid-link')
       a.href = link.url
       a.innerText = link.provider
-      a.target = '_blank'
-      // check if we can set a title
+      let describedBy = note.id
+      // title is for mouse users; screen readers get the description via aria-describedby
       if (typeof link.longDescription !== 'undefined') {
         a.title = link.longDescription
+        const desc = hiddenText(link.longDescription)
+        describedBy = `${desc.id} ${note.id}`
+        li.append(desc)
       }
+      makeNewTabLink(a, describedBy)
       li.append(a)
       ul.append(li)
     })
-    mountTo.append(ul)
+    mountTo.append(ul, note)
     mountTo.append(credit(language as MetagridLanguages))
   } else {
     console.info(`Metagrid didn't find a concordance. Statuscode: ${data.status.statusCode}, error: ${data.status.error as string}`)
@@ -45,6 +86,7 @@ export async function widget (mountTo: HTMLElement, projectSlug: string, identif
 export function credit (language?: MetagridLanguages): HTMLElement {
   const div = document.createElement('div')
   div.classList.add('metagrid-credit')
+  div.lang = 'en'
   let sahsText: string = 'the networking initiative of the SAHS'
   switch (language) {
     case MetagridLanguages.de:
@@ -57,6 +99,11 @@ export function credit (language?: MetagridLanguages): HTMLElement {
       sahsText = 'l’iniziativa di messa in rete dell’ASSU'
       break
   }
-  div.innerHTML = `Links powered by <a href="https://www.metagrid.ch" target="_blank">Metagrid</a> – ${sahsText}`
+  // ponytail: "Links powered by" stays English as before; only the SAHS part is tagged with its language
+  const sahsLang = typeof language !== 'undefined' && [MetagridLanguages.de, MetagridLanguages.fr, MetagridLanguages.it].includes(language) ? language : 'en'
+  div.innerHTML = `Links powered by <a href="https://www.metagrid.ch">Metagrid</a> – <span lang="${sahsLang}">${sahsText}</span>`
+  const note = newTabNote(language)
+  makeNewTabLink(div.querySelector('a') as HTMLAnchorElement, note.id)
+  div.append(note)
   return div
 }
